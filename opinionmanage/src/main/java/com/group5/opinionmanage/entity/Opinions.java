@@ -24,13 +24,13 @@ public class Opinions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer oid;
-    @Column(name = "context")
+
     private String context;
-    @Column(name = "type")
+
     private String type;
-    @Column(name = "feature")
+
     private int feature;
-    @Column(name = "keyword")
+
     private String keyword;
 
     public Opinions(){}

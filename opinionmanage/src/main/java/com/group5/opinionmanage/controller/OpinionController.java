@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author 10569
@@ -35,6 +36,11 @@ public class OpinionController {
         Page<Opinions> info=opinionsServiceImpl.findAll(pageable);
         Long count= opinionsServiceImpl.count();
         return new GetVo(0,"success",count,info);
+    }
+    @GetMapping("/test")
+    public String test(){
+        List<Opinions> a=opinionsServiceImpl.findByContext("co");
+        return a.get(0).getContext();
     }
 }
 
