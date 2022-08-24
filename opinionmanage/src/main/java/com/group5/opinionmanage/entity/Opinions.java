@@ -29,7 +29,7 @@ public class Opinions {
 
     private String type;
 
-    private int feature;
+    private Integer feature;
 
     private String keyword;
 
@@ -58,11 +58,11 @@ public class Opinions {
         this.type = type;
     }
 
-    public int getFeature() {
+    public Integer getFeature() {
         return feature;
     }
 
-    public void setFeature(int feature) {
+    public void setFeature(Integer feature) {
         this.feature = feature;
     }
 

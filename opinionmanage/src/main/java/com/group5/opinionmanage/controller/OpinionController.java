@@ -28,18 +28,19 @@ public class OpinionController {
     OpinionsService opinionsServiceImpl;
 
     @GetMapping("/formGet")
-    public GetVo getForm(HttpServletRequest request){
+    public GetVo getForm(HttpServletRequest request) {
         int limit = Integer.parseInt(request.getParameter("limit"));
         int page = Integer.parseInt(request.getParameter("page"));
-        Sort sort=Sort.by(Sort.Order.asc("oid"));
-        Pageable pageable= PageRequest.of(page-1,limit,sort);
-        Page<Opinions> info=opinionsServiceImpl.findAll(pageable);
-        Long count= opinionsServiceImpl.count();
-        return new GetVo(0,"success",count,info);
+        Sort sort = Sort.by(Sort.Order.asc("oid"));
+        Pageable pageable = PageRequest.of(page - 1, limit, sort);
+        Page<Opinions> info = opinionsServiceImpl.findAll(pageable);
+        Long count = opinionsServiceImpl.count();
+        return new GetVo(0, "success", count, info);
     }
+
     @GetMapping("/test")
-    public String test(){
-        List<Opinions> a=opinionsServiceImpl.findByContext("co");
+    public String test() {
+        List<Opinions> a = opinionsServiceImpl.findByContext("co");
         return a.get(0).getContext();
     }
 }
