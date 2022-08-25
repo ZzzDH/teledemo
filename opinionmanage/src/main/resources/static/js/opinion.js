@@ -1,9 +1,9 @@
 $(function (){
     $("#searchBtn").click(function (ev) {
         console.info("reload");
-        alert("lala")
         var conditionSelect = $("#conditionSelect").val();
         var conditionInput = $("#conditionInput").val();
+        var table=layui.table
         table.reload('reloadTb', {
             url: 'http://localhost:8080/ConditionSelect'
             , where: {
