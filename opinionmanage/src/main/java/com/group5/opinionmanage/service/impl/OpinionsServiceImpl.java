@@ -27,8 +27,8 @@ public class OpinionsServiceImpl implements OpinionsService {
     }
 
     @Override
-    public List<Opinions> findByContext(String context) {
-        return opinionsRepository.findByContextLike(context);
+    public Page<Opinions> findByContext(Pageable pageable,String context) {
+        return opinionsRepository.findByContextLike(pageable,context);
     }
 
     @Override
@@ -39,6 +39,16 @@ public class OpinionsServiceImpl implements OpinionsService {
     @Override
     public Long count() {
         return opinionsRepository.count();
+    }
+
+    @Override
+    public Page<Opinions> findByType(Pageable pageable,String id) {
+        return opinionsRepository.findByTypeLike(pageable,id);
+    }
+
+    @Override
+    public Page<Opinions> findByKeyWord(Pageable pageable,String keyword) {
+        return opinionsRepository.findByKeywordLike(pageable,keyword);
     }
 }
 
