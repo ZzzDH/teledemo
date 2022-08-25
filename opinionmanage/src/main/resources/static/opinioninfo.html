@@ -42,6 +42,9 @@
     <a href="{{d.picture}}" target="_blank" class="layui-table-link">查看图片</a>
 </script>
 <script src="./layui/layui.js" charset="utf-8"></script>
+<script type="text/html" id="opinionLink">
+    <a href="{{d.link}}" class="layui-table-link" target="_blank"></a>
+</script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use('table', function () {
@@ -70,13 +73,11 @@
                         title: '内容',
                         width: 350,
                         templet:'<div>{{d.context}}</div>',
-                        fixed: true
                     }, {
                     field: 'feature',
                     title: '态度',
                     width: 180,
                     sort: true,
-                    fixed: true,
                     templet: function (d) {
                         if (d.feature == 1) {
                             return '<span>积极</sapn>'
@@ -99,6 +100,11 @@
                     field: 'keyword',
                     title: '关键词',
                     templet:'<div>{{d.keyword}}</div>',
+                    width: 200
+                },{
+                    field: 'link',
+                    title: '来源',
+                    templet:'<div><a href="{{d.link}}" target="_blank">点击跳转</a></div>',
                     width: 200
                 }
                 ]

@@ -36,8 +36,8 @@ public class Opinions {
     private Integer commentcount;
     private String questiontext;
 
-    @Transient
-    private Integer heat=0;
+    private String link;
+    private Integer heat;
 
     public Integer getHeat() {
         return heat;
@@ -47,16 +47,6 @@ public class Opinions {
         this.heat = heat;
     }
 
-    public Opinions(String context, String type, Integer feature, String keyword, Integer voteupcount, Integer commentcount, String questiontext) {
-        this.context = context;
-        this.type = type;
-        this.feature = feature;
-        this.keyword = keyword;
-        this.voteupcount = voteupcount;
-        this.commentcount = commentcount;
-        this.questiontext = questiontext;
-        setHeat(commentcount * 2 + voteupcount);
-    }
 
     public Integer getVoteupcount() {
         return voteupcount;
@@ -64,7 +54,6 @@ public class Opinions {
 
     public void setVoteupcount(Integer voteupcount) {
         this.voteupcount = voteupcount;
-        heat+=voteupcount;
     }
 
     public Integer getCommentcount() {
@@ -73,7 +62,6 @@ public class Opinions {
 
     public void setCommentcount(Integer commentcount) {
         this.commentcount = commentcount;
-        heat+=commentcount*2;
     }
 
     public String getQuestiontext() {
@@ -82,6 +70,26 @@ public class Opinions {
 
     public void setQuestiontext(String questiontext) {
         this.questiontext = questiontext;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Opinions(String context, String type, Integer feature, String keyword, Integer voteupcount, Integer commentcount, String questiontext, String link, Integer heat) {
+        this.context = context;
+        this.type = type;
+        this.feature = feature;
+        this.keyword = keyword;
+        this.voteupcount = voteupcount;
+        this.commentcount = commentcount;
+        this.questiontext = questiontext;
+        this.link = link;
+        this.heat = heat;
     }
 
     public Opinions() {
