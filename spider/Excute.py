@@ -37,7 +37,7 @@ def answer(url1, id, url2):
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
     }
     url = url1 + id + url2
-     response = requests.get(url=url, headers=headers, timeout=300)
+    response = requests.get(url=url, headers=headers, timeout=300)
     sleep(0.5)
     jtext = json.loads(s=response.text)
     contentList = []
@@ -47,8 +47,9 @@ def answer(url1, id, url2):
         rawcontext = data['content']
         voteup_count = data.get('voteup_count')
         comment_count = data.get('comment_count')
+        questiontext = data['question'].get('title')
         context = pq(rawcontext).text()
-        data = {'context': context, 'voteup_count': voteup_count, 'comment_count': comment_count}
+        data = {'context': context, 'voteup_count': voteup_count, 'comment_count': comment_count,'questiontext':questiontext}
         contentList.append(data)
 
     return contentList
@@ -64,8 +65,8 @@ answerurl2 = '/answers?include=data%5B%2A%5D.is_normal%2Cadmin_closed_comment%2C
              '%2Creshipment_settings%2Ccomment_permission%2Ccreated_time%2Cupdated_time%2Creview_info%2Crelevant_info' \
              '%2Cquestion%2Cexcerpt%2Cis_labeled%2Cpaid_info%2Cpaid_info_content%2Crelationship.is_authorized' \
              '%2Cis_author%2Cvoting%2Cis_thanked%2Cis_nothelp%2Cis_recognized%3Bdata%5B%2A%5D.settings' \
-             '.table_of_content.enabled&limit=5&offset=' \
-             + str(item) + '&platform=desktop&sort_by=default'
+             '.table_of_content.enabled&limit=5&offset=0' \
+             '&platform=desktop&sort_by=default'
 questionList = [{'id': "527445211", 'answer_count': "605"}, {'id': "457368252", 'answer_count': "423"}]
 answerList = []
 for i in range(100):
@@ -80,17 +81,23 @@ for i in range(100):
 for questionitem in questionList:
     end = int(questionitem.get('answer_count')) - int(questionitem.get('answer_count')) % 5
     for item in range(0, end, 5):
+        answerurl2 = '/answers?include=data%5B%2A%5D.is_normal%2Cadmin_closed_comment%2Creward_info%2Cis_collapsed' \
+                     '%2Cannotation_action%2Cannotation_detail%2Ccollapse_reason%2Cis_sticky%2Ccollapsed_by%2Csuggest_edit' \
+                     '%2Ccomment_count%2Ccan_comment%2Ccontent%2Ceditable_content%2Cattachment%2Cvoteup_count' \
+                     '%2Creshipment_settings%2Ccomment_permission%2Ccreated_time%2Cupdated_time%2Creview_info%2Crelevant_info' \
+                     '%2Cquestion%2Cexcerpt%2Cis_labeled%2Cpaid_info%2Cpaid_info_content%2Crelationship.is_authorized' \
+                     '%2Cis_author%2Cvoting%2Cis_thanked%2Cis_nothelp%2Cis_recognized%3Bdata%5B%2A%5D.settings' \
+                     '.table_of_content.enabled&limit=5&offset=' \
+                     + str(item) + '&platform=desktop&sort_by=default'
         alist = answer(answerurl1, questionitem.get('id'), answerurl2)
         if alist != 0:
             for aitem in alist:
-                answerList.append(aitem)
+                try:
+                    opidao = OpiDao()
+                    result = opidao.createcontent(aitem)
+                    if result > 0:
+                        print("写入成功")
+                finally:
+                    opidao.close()
 
-for content in answerList:
-    try:
-        opidao = OpiDao()
-        result = opidao.createcontext(content)
-        if result > 0:
-            print("写入成功")
-    finally:
-        opidao.close()
-    # print(content,end="")
+
