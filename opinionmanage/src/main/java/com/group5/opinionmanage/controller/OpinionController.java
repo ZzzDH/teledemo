@@ -3,6 +3,7 @@ package com.group5.opinionmanage.controller;
 import com.group5.opinionmanage.entity.Opinions;
 import com.group5.opinionmanage.formEntity.GetVo;
 import com.group5.opinionmanage.service.OpinionsService;
+import com.sun.scenario.effect.impl.state.GaussianRenderState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,11 +39,31 @@ public class OpinionController {
         return new GetVo(0, "success", count, info);
     }
 
-    @GetMapping("/test")
-    public String test() {
-        List<Opinions> a = opinionsServiceImpl.findByContext("co");
-        return a.get(0).getContext();
+
+    @GetMapping("/ConditionSelect")
+    public GetVo findtype(HttpServletRequest request){
+        String conditionSelect = String.valueOf(request.getParameter("conditionSelect"));
+        String conditionInput = String.valueOf(request.getParameter("conditionInput"));
+        int limit=Integer.parseInt(request.getParameter("limit"));
+        int page=Integer.parseInt(request.getParameter("page"));
+        Sort sort=Sort.by(Sort.Order.asc("oid"));
+        Pageable pageable=PageRequest.of(page-1,limit,sort);
+        Page<Opinions> info = null;
+        Long count =opinionsServiceImpl.count();
+        switch (conditionSelect) {
+            case "cxt":
+                info = opinionsServiceImpl.findByContext(pageable, conditionInput);
+                break;
+            case "tp":
+                info = opinionsServiceImpl.findByType(pageable, conditionInput);
+                break;
+            case "kw":
+                info = opinionsServiceImpl.findByKeyWord(pageable, conditionInput);
+                break;
+        }
+        return new GetVo(0,"success",count,info);
     }
+
 }
 
 

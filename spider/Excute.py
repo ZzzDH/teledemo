@@ -48,10 +48,13 @@ def answer(url1, id, url2, head):
         heat = voteupcount + commentcount * 2
         questiontext = data['question'].get('title')
         context = pq(rawcontext).text()
+
         qid = id
         link = "https://www.zhihu.com/question/" + qid + "/answer/" + aid
         data = {'aid': aid, 'context': context, 'voteupcount': voteupcount, 'commentcount': commentcount, 'heat': heat,
                 'questiontext': questiontext, 'qid': qid, 'link': link}
+  
+
         contentList.append(data)
 
     return contentList
