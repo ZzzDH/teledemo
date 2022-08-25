@@ -1,2 +1,1 @@
-# teledemo
- 大四小学期
+# BUPT-YQ
