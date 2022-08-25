@@ -49,7 +49,7 @@ def answer(url1, id, url2):
         comment_count = data.get('comment_count')
         questiontext = data['question'].get('title')
         context = pq(rawcontext).text()
-        data = {'context': context, 'voteup_count': voteup_count, 'comment_count': comment_count,'questiontext':questiontext}
+        data = {'context': context, 'voteupcount': voteup_count, 'commentcount': comment_count,'questiontext':questiontext}
         contentList.append(data)
 
     return contentList

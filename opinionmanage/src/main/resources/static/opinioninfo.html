@@ -70,7 +70,6 @@
                         title: '内容',
                         width: 350,
                         templet:'<div>{{d.context}}</div>',
-                        sort: true,
                         fixed: true
                     }, {
                     field: 'feature',
@@ -90,6 +89,12 @@
                     title: '类型',
                     templet:'<div>{{d.type}}</div>',
                     width: 200
+                },{
+                    field: 'heat',
+                    title: '热度',
+                    sort: true,
+                    templet:'<div>{{d.heat}}</div>',
+                    width: 120
                 }, {
                     field: 'keyword',
                     title: '关键词',

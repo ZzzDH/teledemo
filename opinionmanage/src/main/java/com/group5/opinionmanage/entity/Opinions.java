@@ -32,15 +32,61 @@ public class Opinions {
     private Integer feature;
 
     private String keyword;
+    private Integer voteupcount;
+    private Integer commentcount;
+    private String questiontext;
 
-    public Opinions(){}
-    public Opinions(Integer oid, String context, String type, int feature, String keyword) {
-        this.oid = oid;
+    @Transient
+    private Integer heat=0;
+
+    public Integer getHeat() {
+        return heat;
+    }
+
+    public void setHeat(Integer heat) {
+        this.heat = heat;
+    }
+
+    public Opinions(String context, String type, Integer feature, String keyword, Integer voteupcount, Integer commentcount, String questiontext) {
         this.context = context;
         this.type = type;
         this.feature = feature;
         this.keyword = keyword;
+        this.voteupcount = voteupcount;
+        this.commentcount = commentcount;
+        this.questiontext = questiontext;
+        setHeat(commentcount * 2 + voteupcount);
     }
+
+    public Integer getVoteupcount() {
+        return voteupcount;
+    }
+
+    public void setVoteupcount(Integer voteupcount) {
+        this.voteupcount = voteupcount;
+        heat+=voteupcount;
+    }
+
+    public Integer getCommentcount() {
+        return commentcount;
+    }
+
+    public void setCommentcount(Integer commentcount) {
+        this.commentcount = commentcount;
+        heat+=commentcount*2;
+    }
+
+    public String getQuestiontext() {
+        return questiontext;
+    }
+
+    public void setQuestiontext(String questiontext) {
+        this.questiontext = questiontext;
+    }
+
+    public Opinions() {
+    }
+
 
     public String getContext() {
         return context;
