@@ -14,9 +14,9 @@ import java.util.List;
  */
 
 public interface OpinionsService {
-    public Opinions findByOid(Integer oid);
-    public Page<Opinions> findByContext(Pageable pageable,String context);
-    public Page<Opinions> findAll(Pageable pageable);
+    Opinions findByOid(Integer oid);
+    Page<Opinions> findByContext(Pageable pageable,String context);
+    Page<Opinions> findAll(Pageable pageable);
     Long count();
 
     Page<Opinions> findByType(Pageable pageable,String id);
