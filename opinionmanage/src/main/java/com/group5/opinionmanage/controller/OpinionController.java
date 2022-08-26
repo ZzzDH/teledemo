@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @author 10569
  * @version 1.0
- * @description
+ * @description     响应前端请求
  * @Date 2022/8/24 14:17
  */
 
@@ -60,6 +60,7 @@ public class OpinionController {
             case "kw":
                 info = opinionsServiceImpl.findByKeyWord(pageable, conditionInput);
                 break;
+            default:
         }
         return new GetVo(0,"success",count,info);
     }

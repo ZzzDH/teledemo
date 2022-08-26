@@ -6,6 +6,9 @@ import re
 from pyquery import PyQuery as pq
 from dao.OpiDao import OpiDao
 
+split_path = 'split_raw.txt'
+non_split_path = 'raw.txt'
+
 
 def question(url1, id, url2):
     headers = {
@@ -53,7 +56,6 @@ def answer(url1, id, url2, head):
         link = "https://www.zhihu.com/question/" + qid + "/answer/" + aid
         data = {'aid': aid, 'context': context, 'voteupcount': voteupcount, 'commentcount': commentcount, 'heat': heat,
                 'questiontext': questiontext, 'qid': qid, 'link': link}
-  
 
         contentList.append(data)
 
@@ -72,7 +74,10 @@ answerurl2 = '/answers?include=data%5B%2A%5D.is_normal%2Cadmin_closed_comment%2C
              '%2Cis_author%2Cvoting%2Cis_thanked%2Cis_nothelp%2Cis_recognized%3Bdata%5B%2A%5D.settings' \
              '.table_of_content.enabled&limit=5&offset=0' \
              '&platform=desktop&sort_by=default'
-questionList = [{'id': "527445211", 'answer_count': "605"}, {'id': "457368252", 'answer_count': "423"}]
+questionList = [{'id': "392726696", 'answer_count': "30"},
+                {'id': "527445211", 'answer_count': "605"},
+                {'id': "457368252", 'answer_count': "423"},
+                {'id': "527153127", 'answer_count': "1707"}, ]
 user_agent_list = [
     "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1",
     "Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11",
@@ -94,6 +99,7 @@ user_agent_list = [
     "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"
 ]
 answerList = []
+answer_id_list = []
 for i in range(100):
     if i == len(questionList):
         break
@@ -104,11 +110,9 @@ for i in range(100):
                 questionList.append(qitem)
     print(i)
     j = 1
-    aidlist = []
+
+aidlist = []
 for questionitem in questionList:
-    if questionitem.get('id') in aidlist:
-        continue
-    aidlist.append(questionitem.get('id'))
     end = int(questionitem.get('answer_count')) - int(questionitem.get('answer_count')) % 5
     for item in range(0, end, 5):
         if j == 410:
@@ -124,12 +128,31 @@ for questionitem in questionList:
         alist = answer(answerurl1, questionitem.get('id'), answerurl2, head=user_agent_list[item % 18])
         if alist != 0:
             for aitem in alist:
+                aid = aitem['aid']
+                if aid in aidlist:
+                    continue
+                aidlist.append(aid)
                 try:
                     opidao = OpiDao()
                     result = opidao.createcontent(aitem)
                     if result > 0:
-                        print("写入成功")
-                        print(j)
+                        if j % 50 == 0:
+                            print("写入成功")
+                            print(j)
+                        answerList.append(aitem['context'])
+                        answer_id_list.append(aid)
                         j += 1
+                        if j > 20000:
+                            opidao.close()
+                            break
                 finally:
                     opidao.close()
+
+with open(split_path, 'w', encoding='utf-8') as f:
+    for (context, aid) in zip(answerList, answer_id_list):
+        f.write(context + "\t\n")
+
+with open(non_split_path, 'w', encoding='utf-8') as f:
+    for (context, aid) in zip(answerList, answer_id_list):
+        con = aid + '||' + context
+        f.write(con + "\t\n")

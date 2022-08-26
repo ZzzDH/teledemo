@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author 10569
  * @version 1.0
- * @description
+ * @description     提供的服务的实现
  * @Date 2022/8/24 15:18
  */
 @Service("OpinionsService")
