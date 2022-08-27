@@ -1,9 +1,8 @@
 package com.group5.opinionmanage.controller;
 
 import com.group5.opinionmanage.entity.Opinions;
-import com.group5.opinionmanage.formEntity.GetVo;
+import com.group5.opinionmanage.formentity.GetVo;
 import com.group5.opinionmanage.service.OpinionsService;
-import com.sun.scenario.effect.impl.state.GaussianRenderState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author 10569
