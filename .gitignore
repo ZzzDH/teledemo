@@ -3,3 +3,4 @@ spider/dao/mysql.json
 *.pyc
 spider/.idea/misc.xml
 spider/.idea/spider.iml
+*.pt
