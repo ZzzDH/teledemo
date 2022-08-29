@@ -33,7 +33,7 @@ public class OpinionsServiceImpl implements OpinionsService {
 
     @Override
     public Page<Opinions> findAll(Pageable pageable) {
-        return opinionsRepository.findAll(pageable);
+        return opinionsRepository.findAllByOrderByHeatDesc(pageable);
     }
 
     @Override
