@@ -4,3 +4,7 @@ spider/dao/mysql.json
 spider/.idea/misc.xml
 spider/.idea/spider.iml
 *.pt
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/teledemo.iml
