@@ -17,3 +17,5 @@ class OpiDao(BaseDao):
         self.commit()
         return result
         pass
+
+    def updatetag(self,data={}):
