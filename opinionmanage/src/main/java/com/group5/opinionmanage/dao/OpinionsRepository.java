@@ -22,7 +22,8 @@ public interface OpinionsRepository extends JpaRepository<Opinions, Integer> {
     Page<Opinions> findByContextLike(Pageable pageable,@Param("context") String context);
 
     Page<Opinions> findAllByOrderByHeatDesc(Pageable pageable);
-
+    @Query(value="select o from Opinions  o where o.type like %?1%")
+    Page<Opinions> findByTypeLike(Pageable pageable,@Param("type") String tp);
     @Query(value = "select  o from Opinions o where  o.keyword like %?1%")
     Page<Opinions> findByKeywordLike(Pageable pageable,@Param("keyword") String kw);
     long count();
