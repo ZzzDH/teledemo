@@ -1,17 +1,12 @@
-from dao.BaseDao import BaseDao
+from spider.dao.BaseDao import BaseDao
 
 
 class OpiDao(BaseDao):
-    def createJobData(self, sql, params):
-        result = self.execute(sql, params)
-        self.commit()
-        return result
-        pass
 
-    def createcontent(self, data={}):
+    def createcontent(self,aid,data={}):
 
-        sql = "insert into opinions (aid,context,voteupcount,commentcount,heat,questiontext,qid,link) values (%s,%s,%s,%s,%s,%s,%s,%s)"
-        params = [data.get('aid'),data.get('context'), data.get('voteupcount'), data.get('commentcount'),data.get('heat'), data.get('questiontext'),data.get('qid'),data.get('link')]
+        sql = "insert into opinions (aid,context,voteupcount,commentcount,heat,keyword,questiontext,qid,link) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        params = [aid,data.get('context'), data.get('voteupcount'), data.get('commentcount'),data.get('heat'),data.get('keyword'),data.get('questiontext'),data.get('qid'),data.get('link')]
 
         result = self.execute(sql, params)
         self.commit()
@@ -19,3 +14,17 @@ class OpiDao(BaseDao):
         pass
 
     def updatetag(self,data={}):
+        sql = "update opinions set feature = %s where aid= %s"
+        params = [data['feature'],data['aid']]
+        result = self.execute(sql,params)
+        self.commit()
+        return result
+        pass
+
+    def updatekeyword(self,data={}):
+        sql = "update opinions set feature = %s where aid= %s"
+        params = [data['keyword'], data['aid']]
+        result = self.execute(sql, params)
+        self.commit()
+        return result
+        pass

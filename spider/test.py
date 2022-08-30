@@ -1,3 +1,4 @@
+
 import numpy as np
 import sys
 arr = np.array([[1, 2, 100, 4, 5, 6],
@@ -7,4 +8,3 @@ arr = np.array([[1, 2, 100, 4, 5, 6],
 
 print(type(int(sys.argv[2])))
 print(int(sys.argv[2]))
-
