@@ -34,7 +34,7 @@ public class OpinionController {
     public GetVo getForm(HttpServletRequest request) {
         int limit = Integer.parseInt(request.getParameter("limit"));
         int page = Integer.parseInt(request.getParameter("page"));
-        Sort sort = Sort.by(Sort.Order.asc("oid"));
+        Sort sort = Sort.by(Sort.Order.desc("heat"));
         Pageable pageable = PageRequest.of(page - 1, limit, sort);
         Page<Opinions> info = opinionsServiceImpl.findAll(pageable);
         Long count = opinionsServiceImpl.count();
@@ -48,16 +48,13 @@ public class OpinionController {
         String conditionInput = String.valueOf(request.getParameter("conditionInput"));
         int limit=Integer.parseInt(request.getParameter("limit"));
         int page=Integer.parseInt(request.getParameter("page"));
-        Sort sort=Sort.by(Sort.Order.asc("oid"));
+        Sort sort=Sort.by(Sort.Order.desc("heat"));
         Pageable pageable=PageRequest.of(page-1,limit,sort);
         Page<Opinions> info = null;
         Long count =opinionsServiceImpl.count();
         switch (conditionSelect) {
             case "cxt":
                 info = opinionsServiceImpl.findByContext(pageable, conditionInput);
-                break;
-            case "tp":
-                info = opinionsServiceImpl.findByType(pageable, conditionInput);
                 break;
             case "kw":
                 info = opinionsServiceImpl.findByKeyWord(pageable, conditionInput);
@@ -68,7 +65,7 @@ public class OpinionController {
     }
 
     @GetMapping("/spider")
-    public String getNewData(HttpServletRequest request) throws IOException {
+    public String getNewData(String spiderContent) throws IOException {
         String python="D:\\Anaconda\\anaconda3\\envs\\learning\\python.exe";
         String script="C:\\Users\\10569\\Desktop\\teledemo\\teledemo\\spider\\test.py";
         String arg1=3+"";
@@ -83,8 +80,9 @@ public class OpinionController {
             System.out.println(line);
         }
         in.close();
-        System.out.println("?");
-        return result.toString();
+        System.out.println(spiderContent);
+
+        return "finish";
     }
 
 }

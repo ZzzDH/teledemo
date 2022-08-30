@@ -41,10 +41,6 @@ public class OpinionsServiceImpl implements OpinionsService {
         return opinionsRepository.count();
     }
 
-    @Override
-    public Page<Opinions> findByType(Pageable pageable,String id) {
-        return opinionsRepository.findByTypeLike(pageable,id);
-    }
 
     @Override
     public Page<Opinions> findByKeyWord(Pageable pageable,String keyword) {

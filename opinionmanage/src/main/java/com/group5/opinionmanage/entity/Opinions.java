@@ -27,7 +27,6 @@ public class Opinions {
 
     private String context;
 
-    private String type;
 
     private Integer feature;
 
@@ -80,9 +79,8 @@ public class Opinions {
         this.link = link;
     }
 
-    public Opinions(String context, String type, Integer feature, String keyword, Integer voteupcount, Integer commentcount, String questiontext, String link, Integer heat) {
+    public Opinions(String context, Integer feature, String keyword, Integer voteupcount, Integer commentcount, String questiontext, String link, Integer heat) {
         this.context = context;
-        this.type = type;
         this.feature = feature;
         this.keyword = keyword;
         this.voteupcount = voteupcount;
@@ -104,13 +102,6 @@ public class Opinions {
         this.context = context;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public Integer getFeature() {
         return feature;

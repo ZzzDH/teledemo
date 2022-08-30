@@ -12,6 +12,7 @@
 	<artifactId>eurekaserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>eurekaserver</name>
+	<packaging>war</packaging>
 	<description>eurekaserver</description>
 	<properties>
 		<java.version>1.8</java.version>
