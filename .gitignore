@@ -8,6 +8,7 @@ spider/.idea/spider.iml
 .idea/misc.xml
 .idea/modules.xml
 .idea/teledemo.iml
+
 opinionmanage/spider/dao/__init__.py
 opinionmanage/spider/dao/__init__.py
 spider/test.py
@@ -20,3 +21,7 @@ opinionmanage/spider/dao/mysql.json
 opinionmanage/spider/dao/OpiDao.py
 opinionmanage/spider/Excute.py
 opinionmanage/spider/main.py
+.idea/libraries/*.xml
+
+.idea/vcs.xml
+
