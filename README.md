@@ -12,3 +12,9 @@ pytorch-12.1.2
 tqdm-4.64
 
 boto3 
+
+jieba
+
+pyquery
+
+pymysql

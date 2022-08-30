@@ -5,7 +5,7 @@ $(function (){
         var conditionInput = $("#conditionInput").val();
         var table=layui.table
         table.reload('reloadTb', {
-            url: 'http://localhost:8080/ConditionSelect'
+            url: 'http://47.92.23.6:7002/ConditionSelect'
             , where: {
                 conditionSelect: conditionSelect,
                 conditionInput: conditionInput
@@ -20,7 +20,7 @@ $(function (){
         console.log(spiderContent)
         $.ajax({
             type:'GET',
-            url: 'http://localhost:8080/spider',
+            url: 'http://47.92.23.6:7002/spider',
             async: true,
             cache: false,
             data: {'spiderContent':spiderContent},

@@ -66,20 +66,15 @@ public class OpinionController {
 
     @GetMapping("/spider")
     public String getNewData(String spiderContent) throws IOException {
-        String python="D:\\Anaconda\\anaconda3\\envs\\learning\\python.exe";
-        String script="C:\\Users\\10569\\Desktop\\teledemo\\teledemo\\spider\\test.py";
-        String arg1=3+"";
-        String arg2=4+"";
-        String[] argument=new String[]{python,script,arg1,arg2};
+        //String python="D:\\Anaconda\\anaconda3\\envs\\learning\\python.exe";
+        //String script="C:\\Users\\10569\\Desktop\\teledemo\\teledemo\\spider\\test.py";
+        //String python="/root/anaconda3/envs/learning/bin";
+        String python="python3";
+        String script="/usr/scripts/spider/run.py";
+        String arg1=1000+"";
+        String[] argument=new String[]{python,script,arg1, spiderContent};
         Process process =Runtime.getRuntime().exec(argument);
-        BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line;
-        StringBuilder result= new StringBuilder();
-        while((line=in.readLine())!=null){
-            result.append(line);
-            System.out.println(line);
-        }
-        in.close();
+
         System.out.println(spiderContent);
         return "finish";
     }

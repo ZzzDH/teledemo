@@ -71,17 +71,18 @@ def answer(url1, qid, url2, head):
 
 
 def daoService(anwserDict):
+    a=analysis()
     j = 0
     for aid in anwserDict.keys():
         anwserDict[aid]['keyword'] = get_keyword(anwserDict[aid]['context'])
-        anwserDict[aid]['feature'] = analysis().get(aid)
+        anwserDict[aid]['feature'] = str(a.get(aid))
         opidao = OpiDao()
         try:
             result = opidao.createcontent(aid, anwserDict[aid])
             if result > 0:
-                if j % 50 == 0:
-                    print("写入成功")
-                    print(j)
+                #if j % 50 == 0:
+                print("写入成功")
+                print(j)
                 j += 1
         except Exception as e:
             print(e)

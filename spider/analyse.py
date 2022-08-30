@@ -11,21 +11,23 @@ from models.my_rnn_attention import RNN
 from utils import build_dataset
 
 model_path = './my_model_dict/epoch_17_loss_1.0007380723953248_acc_tensor(0.5675, device=\'cuda_0\')_param.pt'
-output_path='./ZhiHuAnswers/data/output.txt'
-device=torch.device('cpu')
-def tag(model,dataset):
+output_path = './ZhiHuAnswers/data/output.txt'
+device = torch.device('cpu')
+
+
+def tag(model, dataset):
     labels = []
-    for batch_x in tqdm(dataset):
-        batch_x=batch_x[0].to(device)
-        output=model(batch_x)
-        predict=torch.max(output.data,1)[1]
-        labels+=predict.tolist()
+    for batch_x in dataset:
+        batch_x = batch_x[0].to(device)
+        output = model(batch_x)
+        predict = torch.max(output.data, 1)[1]
+        labels += predict.tolist()
     print(labels)
     return labels
 
 
 def analysis():
-    batch_size = 16
+    batch_size = 2
     vocab_size, embedding_dim, hidden_size, num_classes, num_layers = 18000, 256, 128, 3, 1
     dataset = 'ZhiHuAnswers'
     start_time = time.time()
@@ -38,7 +40,6 @@ def analysis():
     train_loader = Data.DataLoader(
         dataset=train_data,
         batch_size=batch_size,
-        num_workers=2,
         drop_last=True
     )
     model = RNN(vocab_size, embedding_dim, hidden_size, num_classes, num_layers)
@@ -49,11 +50,9 @@ def analysis():
             text = text.strip('\n').strip('\t')
             sentence = text + '\t' + str(label) + '\n'
             f.write(sentence)
-    a=data_transfer.answer_match()
+    a = data_transfer.answer_match()
     return a
 
 
-if __name__=='__main__':
-    b=analysis()
-
-
+if __name__ == '__main__':
+    b = analysis()
