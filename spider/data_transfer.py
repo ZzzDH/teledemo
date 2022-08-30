@@ -56,19 +56,15 @@ def answer_match():
     for idx in index_list:
         label_slices.append(labels[idx])
     label_slices = np.array(label_slices, dtype=object)
-    out = []
-    aaa=[]
+    out = {}
     for id, label in zip(aid_list, label_slices):
         l = np.argmax(np.bincount(label))
-        aaa.append(l)
-        out.append([id, l])
-    bb=np.array(aaa)
+        out[id]=l
 
     return out
 
 
 if __name__ == '__main__':
-    file='./ZhiHuAnswers/data/test'
-    b=np.array(answer_match())
-
+    b=answer_match()
+    print('A')
 

@@ -6,8 +6,8 @@ from pyquery import PyQuery as pq
 from dao.OpiDao import OpiDao
 from config import user_agent_list, questionList, questionurl1, questionurl2, answerurl1
 
-split_path = 'split_raw.txt'
-non_split_path = 'raw.txt'
+split_path = './ZhiHuAnswers/data/split_raw.txt'
+non_split_path = './ZhiHuAnswers/data/raw.txt'
 
 
 def get_keyword(data):
@@ -90,12 +90,11 @@ def daoService(anwserDict):
 
 
 def txtService(answercontextList, answer_id_list):
-    with open(split_path, 'w', encoding='utf-8') as f:
+    with open(split_path, 'w+', encoding='utf-8') as f:
         for (context, aid) in zip(answercontextList, answer_id_list):
-            print(2)
             f.write(context + "\t\n")
 
-    with open(non_split_path, 'w', encoding='utf-8') as f:
+    with open(non_split_path, 'w+', encoding='utf-8') as f:
         for (context, aid) in zip(answercontextList, answer_id_list):
             con = aid + '||' + context
             f.write(con + "\t\n")

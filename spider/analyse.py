@@ -6,6 +6,7 @@ from torch import nn
 from tqdm import tqdm
 import torch.utils.data as Data
 
+import data_transfer
 from models.my_rnn_attention import RNN
 from utils import build_dataset
 
@@ -23,7 +24,7 @@ def tag(model,dataset):
     return labels
 
 
-if __name__ == '__main__':
+def analysis():
     batch_size = 16
     vocab_size, embedding_dim, hidden_size, num_classes, num_layers = 18000, 256, 128, 3, 1
     dataset = 'ZhiHuAnswers'
@@ -32,19 +33,27 @@ if __name__ == '__main__':
     config = x.Config(dataset)
     print("Loading data...")
 
-    untagged_data ,texts= build_dataset(config, mode='utilize')
+    untagged_data, texts = build_dataset(config, mode='utilize')
     train_data = Data.TensorDataset(torch.tensor(untagged_data))
     train_loader = Data.DataLoader(
         dataset=train_data,
         batch_size=batch_size,
-        num_workers=2
+        num_workers=2,
+        drop_last=True
     )
     model = RNN(vocab_size, embedding_dim, hidden_size, num_classes, num_layers)
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
-    labels=tag(model,train_loader)
-    with open(output_path,'w',encoding='UTF-8') as f:
-        for text,label in zip(texts,labels):
-            text=text.strip('\n').strip('\t')
-            sentence=text+'\t'+str(label)+'\n'
+    labels = tag(model, train_loader)
+    with open(output_path, 'w+', encoding='UTF-8') as f:
+        for text, label in zip(texts, labels):
+            text = text.strip('\n').strip('\t')
+            sentence = text + '\t' + str(label) + '\n'
             f.write(sentence)
+    a=data_transfer.answer_match()
+    return a
+
+
+if __name__=='__main__':
+    b=analysis()
+
 
