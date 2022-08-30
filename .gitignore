@@ -25,3 +25,4 @@ opinionmanage/spider/main.py
 
 .idea/vcs.xml
 
+.idea/artifacts/eurekaserver_war.xml
