@@ -47,15 +47,7 @@ public interface OpinionsService {
      * @return java.lang.Long 
     */
     Long count();
-    /**
-     * @author qby
-     * @Description 按照种类模糊查找并返回分页数据
-     * @Date 13:21 2022/8/26
-     * @Param pageable Pageable
-     * @Param id String
-     * @return org.springframework.data.domain.Page<com.group5.opinionmanage.entity.Opinions> 
-    */
-    Page<Opinions> findByType(Pageable pageable,String id);
+
     /**
      * @author qby
      * @Description 按照关键字进行模糊查询并返回分页数据
