@@ -81,7 +81,7 @@ public class OpinionController {
         }
         in.close();
         System.out.println(spiderContent);
-        return "finish"
+        return "finish";
     }
 
 }
