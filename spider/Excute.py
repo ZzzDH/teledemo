@@ -5,6 +5,7 @@ from jieba.analyse import extract_tags
 from pyquery import PyQuery as pq
 from dao.OpiDao import OpiDao
 from config import user_agent_list, questionList, questionurl1, questionurl2, answerurl1
+from analyse import analysis
 
 split_path = './ZhiHuAnswers/data/split_raw.txt'
 non_split_path = './ZhiHuAnswers/data/raw.txt'
@@ -73,6 +74,7 @@ def daoService(anwserDict):
     j = 0
     for aid in anwserDict.keys():
         anwserDict[aid]['keyword'] = get_keyword(anwserDict[aid]['context'])
+        anwserDict[aid]['feature'] = analysis().get(aid)
         opidao = OpiDao()
         try:
             result = opidao.createcontent(aid, anwserDict[aid])
