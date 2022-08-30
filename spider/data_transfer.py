@@ -1,3 +1,5 @@
+import os
+
 from tqdm import tqdm
 import numpy as np
 
@@ -66,5 +68,7 @@ def answer_match():
 
 
 if __name__ == '__main__':
+    file='./ZhiHuAnswers/data/test'
     b=np.array(answer_match())
+
 
