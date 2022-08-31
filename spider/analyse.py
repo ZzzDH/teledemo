@@ -10,8 +10,8 @@ import data_transfer
 from models.my_rnn_attention import RNN
 from utils import build_dataset
 
-model_path = './my_model_dict/epoch_17_loss_1.0007380723953248_acc_tensor(0.5675, device=\'cuda_0\')_param.pt'
-output_path = './ZhiHuAnswers/data/output.txt'
+model_path = r'/my_model_dict/epoch_17_loss_1.0007380723953248_acc_tensor(0.5675, device=\'cuda_0\')_param.pt'
+output_path = r'/ZhiHuAnswers/data/output.txt'
 device = torch.device('cpu')
 
 

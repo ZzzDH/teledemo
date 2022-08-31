@@ -14,8 +14,8 @@ import numpy as np
 #         a[label]=a[label]+1
 #
 #     print(a)
-output_path = './ZhiHuAnswers/data/output.txt'
-raw_path = './ZhiHuAnswers/data/raw.txt'
+output_path = r'/ZhiHuAnswers/data/output.txt'
+raw_path = r'/ZhiHuAnswers/data/raw.txt'
 
 
 def answer_match():

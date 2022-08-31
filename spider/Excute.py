@@ -7,8 +7,8 @@ from dao.OpiDao import OpiDao
 from config import user_agent_list, questionList, questionurl1, questionurl2, answerurl1
 from analyse import analysis
 
-split_path = './ZhiHuAnswers/data/split_raw.txt'
-non_split_path = './ZhiHuAnswers/data/raw.txt'
+split_path = r'/ZhiHuAnswers/data/split_raw.txt'
+non_split_path = r'/ZhiHuAnswers/data/raw.txt'
 
 
 def get_keyword(data):
