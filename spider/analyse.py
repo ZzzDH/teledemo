@@ -1,19 +1,19 @@
 import sys
 import time
 import torch
-import tqdm
+
 from importlib import import_module
-from torch import nn
-from tqdm import tqdm
+
 import torch.utils.data as Data
 
 import data_transfer
 from models.my_rnn_attention import RNN
 from utils import build_dataset
-abs_path=sys.path[0]
 
-model_path = abs_path+r'/my_model_dict/usethis.pt'
-output_path = abs_path+r'/ZhiHuAnswers/data/output.txt'
+abs_path = sys.path[0]
+
+model_path = abs_path + r'/my_model_dict/usethis.pt'
+output_path = abs_path + r'/ZhiHuAnswers/data/output.txt'
 device = torch.device('cpu')
 
 
@@ -52,5 +52,3 @@ def analysis():
             f.write(sentence)
     a = data_transfer.answer_match()
     return a
-
-

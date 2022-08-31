@@ -43,7 +43,16 @@
             <select name="cdSelect" lay-verify="" lay-filter="test" id="spiderSelection">
                 <option value="新冠">新冠</option>
                 <option value="疫情">疫情</option>
-                <option value="疫苗">疫苗</option>
+                <option value="核酸">核酸</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-input-inline">
+        <div class="layui-form">
+            <select name="cdSelect" lay-verify="" lay-filter="test" id="spiderCount">
+                <option value="100">100条</option>
+                <option value="500">500条</option>
+                <option value="700">700条</option>
             </select>
         </div>
     </div>
@@ -62,7 +71,7 @@
         //第一个实例
         table.render({
             elem: '#opinionTb',
-            url: 'http://47.92.23.6:7002/formGet',
+            url: 'http://localhost:7002/formGet',
             //url: 'http://localhost:7002/formGet',
             parseData: function (res) {
                 return {
