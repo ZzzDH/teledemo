@@ -46,6 +46,11 @@ public class OpinionsServiceImpl implements OpinionsService {
     public Page<Opinions> findByKeyWord(Pageable pageable,String keyword) {
         return opinionsRepository.findByKeywordLike(pageable,keyword);
     }
+
+    @Override
+    public Page<Opinions> findByFeature(Pageable pageable, Integer feature) {
+        return opinionsRepository.findByFeature(pageable,feature);
+    }
 }
 
 

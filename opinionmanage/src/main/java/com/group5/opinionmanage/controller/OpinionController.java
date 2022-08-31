@@ -60,6 +60,18 @@ public class OpinionController {
             case "kw":
                 info = opinionsServiceImpl.findByKeyWord(pageable, conditionInput);
                 break;
+            case "ft":
+                if ("积极".equals(conditionInput)) {
+                    info = opinionsServiceImpl.findByFeature(pageable, 1);
+                } else if ("消极".equals(conditionInput)) {
+                    info = opinionsServiceImpl.findByFeature(pageable, 0);
+                } else if ("中性".equals(conditionInput)) {
+                    info = opinionsServiceImpl.findByFeature(pageable, 2);
+                } else {
+                    return null;
+                }
+
+                break;
             default:
         }
         return new GetVo(0, "success", count, info);
@@ -67,10 +79,11 @@ public class OpinionController {
 
     @GetMapping("/spider")
     public String getNewData(String spiderContent) throws IOException, InterruptedException {
-//        String python = "D:\\Anaconda\\anaconda3\\envs\\learning\\python.exe";
-//        String script = "C:\\Users\\10569\\Desktop\\teledemo\\teledemo\\spider\\run.py";
+        //String python = "D:\\Anaconda\\anaconda3\\envs\\learning\\python.exe";
+        //String script = "C:\\Users\\10569\\Desktop\\teledemo\\teledemo\\spider\\run.py";
         String python="/root/anaconda3/envs/learning/bin/python";
         String script="/usr/scripts/spider/run.py";
+        System.out.println(spiderContent);
         String arg1 = 200 + "";
         String[] argument = new String[]{python, script, arg1, spiderContent};
         Process process = Runtime.getRuntime().exec(argument);
@@ -81,7 +94,7 @@ public class OpinionController {
         process.destroy();
         in.close();
         System.out.println(stat);
-        if (stat == 0 ) {
+        if (stat == 0) {
             return "finish";
         } else {
             return "false";

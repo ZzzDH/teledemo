@@ -5,8 +5,8 @@ $(function (){
         var conditionInput = $("#conditionInput").val();
         var table=layui.table
         table.reload('reloadTb', {
-            //url: 'http://47.92.23.6:7002/ConditionSelect'
-            url:'http://localhost:7002/ConditionSelect'
+            url: 'http://47.92.23.6:7002/ConditionSelect'
+            //url:'http://localhost:7002/ConditionSelect'
             , where: {
                 conditionSelect: conditionSelect,
                 conditionInput: conditionInput
@@ -17,17 +17,17 @@ $(function (){
 
     $("#spiderBtn").click(function (ev){
         console.info("spider");
-        var spiderContent=$("#spiderContent").val();
+        var spiderSelection=$("#spiderSelection").val();
         var index=layer.load(2,{shade:[0.5,'#fff']})
         var table=layui.table
-        console.log(spiderContent)
+        console.log(spiderSelection)
         $.ajax({
             type:'GET',
-            //url: 'http://47.92.23.6:7002/spider',
-            url: 'http://localhost:7002/spider',
+            url: 'http://47.92.23.6:7002/spider',
+            //url: 'http://localhost:7002/spider',
             async: true,
             cache: false,
-            data: {'spiderContent':spiderContent},
+            data: {'spiderContent':spiderSelection},
             beforeSend:function (){
                 return index;
             },
@@ -36,8 +36,8 @@ $(function (){
                     layer.close(index)
                     layer.msg('完成！')
                     setTimeout(table.reload('reloadTb', {
-                        //url: 'http://47.92.23.6:7002/formGet'
-                        url:'http://localhost:7002/formGet'
+                        url: 'http://47.92.23.6:7002/formGet'
+                        //url:'http://localhost:7002/formGet'
 
                     }),1000);
 

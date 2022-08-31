@@ -36,3 +36,11 @@ answerurl2 = '/answers?include=data%5B%2A%5D.is_normal%2Cadmin_closed_comment%2C
              '.table_of_content.enabled&limit=5&offset=0' \
              '&platform=desktop&sort_by=default'
 
+conditiondata = {'疫情': {'x-zse-96': '2.0_HDO4ma+TUPSDaU6THeY2TDQGyiqe2xc/obgnA7i8Y72quxDFN5li5yp8lj37=KY7',
+                        'x-zst-81': '3_2.0VhnTj77m-qofgh3TxTnq2_Qq2LYuDhV80wSL77u0r6PxrXYqXRFZei90-LS9-hp1DufI'
+                                    '-we8gGHPgJO1xuPZ0GxCTJHR7820XM20cLRGDJXfgGCBxupMuD_Ie8FL7AtqM6O1VDQyQ6nxrRPCHukMoCXBEgOsiRP0XL2ZUBXmDDV9qhnyTXFMnXcTF_ntRueThMOKTr3KuCtxfvHCNvHOpr9KtUYB2Tw1TuVqhcu18htVk0gmpGtBr7SLCCVPvRF1Xck0qrU92UNs-wYGM7FqicCBtqpMfg2L8iSmQL30LCg8yBO06hcMZBeYOhFMPwLCgBeV0vV8yDNs6Ce9fX2LQ0CLoUw8ZC2VfQOCfuVZeJx1LuFC4qfz2bOmoUHXS_X0iwc1cLSqS0H_j9O83ggByqH0AGos68FB1MXYEJrLYu2OWwXmJUwfBDUYIDpOOqO0RwCKFGLyoHSmbGcmBAe9rQLyaqpKUgY0-wXBwBHC'},
+                 '新冠': {'x-zse-96': ' 2.0_jShyxkWiaJHHvXcsa+erlHQjHC/m+F/tBVBH+N25LdIPCFTAFF=5sB+TGcVH6WnG',
+                        'x-zst-81': '3_2.0VhnTj77m-qofgh3TxTnq2_Qq2LYuDhV80wSL77u0r6PxrXYqXRFZei90-LS9-hp1DufI-we8gGHPgJO1xuPZ0GxCTJHR7820XM20cLRGDJXfgGCBxupMuD_Ie8FL7AtqM6O1VDQyQ6nxrRPCHukMoCXBEgOsiRP0XL2ZUBXmDDV9qhnyTXFMnXcTF_ntRueThLOC6wO0QhHVPhH9HGYOEJCK8hwpNBpClUX0pUOGyJHptD312wFM3rXfNGLPvRF1Xck0qrU92UNs-wYGM7FqicCBtqpMfg2L8iSmQL30LCg8yBO06hcMZBeYOhFMPwLCgBeV0vV8yDNs6Ce9fX2LQ0CLoUw8ZC2VfQOCfuVZeJx1LuFC4qfzeQXKPgOpk_LBpcn_2Q3fe0Op8g3fuU3M-uHmW9N8rCoMkCH9kqO_WUtYLGtm8TLqBcH_fB291Ug9p9SVrQpMcDX9jhHC5gg0yrrfYvx1yuwK-wXO-JrC'},
+                 '疫苗': {'x-zse-96': '2.0_yDPoPWvjNkwc=lT/JqBgfbi7ngPjiwLvyk8gK6WWm7mS7j=XzP+agRs5dwGC2YFP',
+                        'x-zst-81': '3_2.0VhnTj77m-qofgh3TxTnq2_Qq2LYuDhV80wSL77u0r6PxrXYqXRFZei90-LS9-hp1DufI-we8gGHPgJO1xuPZ0GxCTJHR7820XM20cLRGDJXfgGCBxupMuD_Ie8FL7AtqM6O1VDQyQ6nxrRPCHukMoCXBEgOsiRP0XL2ZUBXmDDV9qhnyTXFMnXcTF_ntRueThTHLZDrYZbxBZrHK09g82CxM1BC_kcOBkGY13qS8hJHMahYGzcOqo0LYOgVPv0VC3vHfncg0tUFV0q3YKRVmJDufPvc1iGLKDC3OsqcMUvgOzDLC7Go_hG7GJCpmaDx1BcNqsg98XqX96LtBfhp9_geG3wofjDxy8CCKSApMkR218uY05qfzoD9YIhHB6Uof3q3fe09qkBYmQ0XB0wLmzqX9QhgKjCoYjvOYODUfrLO9J4OGpLe1kUpGWC3KkHgBtbOqAquK2rXYHq2mZhxK2MOMVCof9qVM5wLL68HC'}
+                 }

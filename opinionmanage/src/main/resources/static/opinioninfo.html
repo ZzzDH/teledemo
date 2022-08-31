@@ -25,6 +25,7 @@
             <select name="cdSelect" lay-verify="" lay-filter="test" id="conditionSelect">
                 <option value="cxt">按内容查询</option>
                 <option value="kw">按关键词查询</option>
+                <option value="ft">按类型查询</option>
             </select>
         </div>
     </div>
@@ -36,16 +37,21 @@
 
 </div>
 
-<div>
-    <div class="layui-form-item">
-        <div class="layui-input-inline">
-            <input id="spiderContent" type="text" name="title" required lay-verify="required" placeholder="输入内容" autocomplete="off">
-
+<div class="layui-form-item">
+    <div class="layui-input-inline">
+        <div class="layui-form">
+            <select name="cdSelect" lay-verify="" lay-filter="test" id="spiderSelection">
+                <option value="新冠">新冠</option>
+                <option value="疫情">疫情</option>
+                <option value="疫苗">疫苗</option>
+            </select>
         </div>
-        <div class="layui-form-mid layui-word-aux">注：爬取时间较长，耐心等待</div>
-        <button class="layui-btn" id="spiderBtn" type="submit">开始爬取</button>
     </div>
+    <div class="layui-form-mid layui-word-aux">注：爬取时间较长，耐心等待</div>
+    <button id="spiderBtn" class="layui-btn" type="submit">开始爬取</button>
+
 </div>
+
 <table id="opinionTb" lay-filter="opinionTb"></table>
 <script src="./layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -56,8 +62,8 @@
         //第一个实例
         table.render({
             elem: '#opinionTb',
-            //url: 'http://47.92.23.6:7002/formGet',
-            url: 'http://localhost:7002/formGet',
+            url: 'http://47.92.23.6:7002/formGet',
+            //url: 'http://localhost:7002/formGet',
             parseData: function (res) {
                 return {
                     "code": 0,

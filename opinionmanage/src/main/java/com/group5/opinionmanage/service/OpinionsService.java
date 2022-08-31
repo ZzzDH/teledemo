@@ -56,6 +56,8 @@ public interface OpinionsService {
      * @return org.springframework.data.domain.Page<com.group5.opinionmanage.entity.Opinions>
     */
     Page<Opinions> findByKeyWord(Pageable pageable,String keyword);
+
+    Page<Opinions> findByFeature(Pageable pageable, Integer feature);
 }
 
 
