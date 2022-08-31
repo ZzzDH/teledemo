@@ -56,7 +56,8 @@
         //第一个实例
         table.render({
             elem: '#opinionTb',
-            url: 'http://47.92.23.6:7002/formGet',
+            //url: 'http://47.92.23.6:7002/formGet',
+            url: 'http://localhost:7002/formGet',
             parseData: function (res) {
                 return {
                     "code": 0,
@@ -74,7 +75,7 @@
                     {
                         field: 'context',
                         title: '内容',
-                        width: 350,
+                        width: 420,
                         templet: '<div>{{d.context}}</div>',
                     }, {
                     field: 'feature',
@@ -84,15 +85,12 @@
                     templet: function (d) {
                         if (d.feature == 1) {
                             return '<span>积极</sapn>'
-                        } else {
+                        } else if(d.feature==0) {
                             return '<span>消极</sapn>'
+                        } else{
+                            return '<span>中性</sapn>'
                         }
                     }
-                }, {
-                    field: 'type',
-                    title: '类型',
-                    templet: '<div>{{d.type}}</div>',
-                    width: 200
                 }, {
                     field: 'heat',
                     title: '热度',

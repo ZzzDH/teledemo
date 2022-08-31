@@ -16,11 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 
 /**
  * @author 10569
  * @version 1.0
- * @description     响应前端请求
+ * @description 响应前端请求
  * @Date 2022/8/24 14:17
  */
 
@@ -43,15 +44,15 @@ public class OpinionController {
 
 
     @GetMapping("/ConditionSelect")
-    public GetVo findCondition(HttpServletRequest request){
+    public GetVo findCondition(HttpServletRequest request) {
         String conditionSelect = String.valueOf(request.getParameter("conditionSelect"));
         String conditionInput = String.valueOf(request.getParameter("conditionInput"));
-        int limit=Integer.parseInt(request.getParameter("limit"));
-        int page=Integer.parseInt(request.getParameter("page"));
-        Sort sort=Sort.by(Sort.Order.desc("heat"));
-        Pageable pageable=PageRequest.of(page-1,limit,sort);
+        int limit = Integer.parseInt(request.getParameter("limit"));
+        int page = Integer.parseInt(request.getParameter("page"));
+        Sort sort = Sort.by(Sort.Order.desc("heat"));
+        Pageable pageable = PageRequest.of(page - 1, limit, sort);
         Page<Opinions> info = null;
-        Long count =opinionsServiceImpl.count();
+        Long count = opinionsServiceImpl.count();
         switch (conditionSelect) {
             case "cxt":
                 info = opinionsServiceImpl.findByContext(pageable, conditionInput);
@@ -61,22 +62,31 @@ public class OpinionController {
                 break;
             default:
         }
-        return new GetVo(0,"success",count,info);
+        return new GetVo(0, "success", count, info);
     }
 
     @GetMapping("/spider")
-    public String getNewData(String spiderContent) throws IOException {
-        //String python="D:\\Anaconda\\anaconda3\\envs\\learning\\python.exe";
-        //String script="C:\\Users\\10569\\Desktop\\teledemo\\teledemo\\spider\\test.py";
-        //String python="/root/anaconda3/envs/learning/bin";
-        String python="python3";
+    public String getNewData(String spiderContent) throws IOException, InterruptedException {
+//        String python = "D:\\Anaconda\\anaconda3\\envs\\learning\\python.exe";
+//        String script = "C:\\Users\\10569\\Desktop\\teledemo\\teledemo\\spider\\run.py";
+        String python="/root/anaconda3/envs/learning/bin/python";
         String script="/usr/scripts/spider/run.py";
-        String arg1=1000+"";
-        String[] argument=new String[]{python,script,arg1, spiderContent};
-        Process process =Runtime.getRuntime().exec(argument);
+        String arg1 = 200 + "";
+        String[] argument = new String[]{python, script, arg1, spiderContent};
+        Process process = Runtime.getRuntime().exec(argument);
+        BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String action = in.readLine();
+        int stat = process.waitFor();
 
-        System.out.println(spiderContent);
-        return "finish";
+        process.destroy();
+        in.close();
+        System.out.println(stat);
+        if (stat == 0 ) {
+            return "finish";
+        } else {
+            return "false";
+        }
+
     }
 
 }

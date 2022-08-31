@@ -1,3 +1,4 @@
+import sys
 import time
 import torch
 import tqdm
@@ -9,9 +10,10 @@ import torch.utils.data as Data
 import data_transfer
 from models.my_rnn_attention import RNN
 from utils import build_dataset
+abs_path=sys.path[0]
 
-model_path = r'/my_model_dict/epoch_17_loss_1.0007380723953248_acc_tensor(0.5675, device=\'cuda_0\')_param.pt'
-output_path = r'/ZhiHuAnswers/data/output.txt'
+model_path = abs_path+r'/my_model_dict/usethis.pt'
+output_path = abs_path+r'/ZhiHuAnswers/data/output.txt'
 device = torch.device('cpu')
 
 
@@ -22,7 +24,6 @@ def tag(model, dataset):
         output = model(batch_x)
         predict = torch.max(output.data, 1)[1]
         labels += predict.tolist()
-    print(labels)
     return labels
 
 
@@ -33,7 +34,6 @@ def analysis():
     start_time = time.time()
     x = import_module('models.' + 'bert')
     config = x.Config(dataset)
-    print("Loading data...")
 
     untagged_data, texts = build_dataset(config, mode='utilize')
     train_data = Data.TensorDataset(torch.tensor(untagged_data))
@@ -54,5 +54,3 @@ def analysis():
     return a
 
 
-if __name__ == '__main__':
-    b = analysis()

@@ -1,21 +1,14 @@
 import os
+import sys
 
 from tqdm import tqdm
 import numpy as np
 
-# path='./ZhiHuAnswers/data/train.txt'
-# with open(path, 'r', encoding='UTF-8') as f:
-#     a={'1':0,'2':0,'0':0}
-#     for line in tqdm(f):
-#         lin = line.strip()
-#         if not lin:
-#             continue
-#         content, label = lin.split('\t')
-#         a[label]=a[label]+1
-#
-#     print(a)
-output_path = r'/ZhiHuAnswers/data/output.txt'
-raw_path = r'/ZhiHuAnswers/data/raw.txt'
+abs_path=sys.path[0]
+
+output_path = abs_path+r'/ZhiHuAnswers/data/output.txt'
+raw_path = abs_path+r'/ZhiHuAnswers/data/raw.txt'
+
 
 
 def answer_match():
@@ -40,6 +33,8 @@ def answer_match():
             labels.append(int(label))
     t_idx = []
     aid = 0
+    length= len(labels)
+    sentences_with_id=sentences_with_id[:length]
     for i, sentence in enumerate(sentences_with_id):
         content = sentence.split('||')
         if len(content) == 2:

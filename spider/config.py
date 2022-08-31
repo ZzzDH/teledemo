@@ -1,4 +1,4 @@
-questionList = [{'id': "392726696", 'answer_count': "30"},
+questionlist = [{'id': "392726696", 'answer_count': "30"},
                 {'id': "527445211", 'answer_count': "605"},
                 {'id': "457368252", 'answer_count': "423"},
                 {'id': "527153127", 'answer_count': "1707"}, ]

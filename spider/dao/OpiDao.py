@@ -13,18 +13,10 @@ class OpiDao(BaseDao):
         return result
         pass
 
-    def updatetag(self,data={}):
-        sql = "update opinions set feature = %s where aid= %s"
-        params = [data['feature'],data['aid']]
-        result = self.execute(sql,params)
-        self.commit()
-        return result
-        pass
-
-    def updatekeyword(self,data={}):
-        sql = "update opinions set feature = %s where aid= %s"
-        params = [data['keyword'], data['aid']]
-        result = self.execute(sql, params)
-        self.commit()
-        return result
-        pass
+    def isempty(self):
+        sql = "select count(*) from opinions"
+        self.execute(sql)
+        if self.fetchone() == 0:
+            return True
+        else:
+            return False
