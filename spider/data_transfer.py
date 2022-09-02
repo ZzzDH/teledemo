@@ -2,11 +2,10 @@ import sys
 
 import numpy as np
 
-abs_path=sys.path[0]
+abs_path = sys.path[0]
 
-output_path = abs_path+r'/ZhiHuAnswers/data/output.txt'
-raw_path = abs_path+r'/ZhiHuAnswers/data/raw.txt'
-
+output_path = abs_path + r'/ZhiHuAnswers/data/output.txt'
+raw_path = abs_path + r'/ZhiHuAnswers/data/raw.txt'
 
 
 def answer_match():
@@ -31,8 +30,8 @@ def answer_match():
             labels.append(int(label))
     t_idx = []
     aid = 0
-    length= len(labels)
-    sentences_with_id=sentences_with_id[:length]
+    length = len(labels)
+    sentences_with_id = sentences_with_id[:length]
     for i, sentence in enumerate(sentences_with_id):
         content = sentence.split('||')
         if len(content) == 2:
@@ -52,12 +51,11 @@ def answer_match():
     out = {}
     for id, label in zip(aid_list, label_slices):
         l = np.argmax(np.bincount(label))
-        out[id]=l
+        out[id] = l
 
     return out
 
 
 if __name__ == '__main__':
-    b=answer_match()
+    b = answer_match()
     print('A')
-
